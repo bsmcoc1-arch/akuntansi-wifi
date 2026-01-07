@@ -16,11 +16,11 @@ jobs:
         with:
           node-version: 18
 
-      - name: 🏗 Setup Expo
+      - name: 🏗 Setup EAS
         uses: expo/expo-github-action@v8
         with:
-          expo-version: latest
-          eas-cache: true
+          # Kita hapus instalasi expo-cli di sini untuk menghindari error yarn
+          eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: 📦 Install dependencies
