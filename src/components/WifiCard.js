@@ -1,30 +1,22 @@
-// src/components/WifiCard.js
-
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-export default function WifiCard({
-  name,
-  harga,
-  tglBeli,
-  tglSelesai,
-  status,
-  onDelete,
-}) {
+export default function WifiCard({ name, harga, tglBeli, tglSelesai, status, onDelete }) {
   return (
     <View style={styles.card}>
       <View style={styles.row}>
         <View>
           <Text style={styles.name}>{name}</Text>
-          <Text style={styles.price}>Rp {harga.toLocaleString()}</Text>
+          <Text style={styles.price}>Rp {harga ? harga.toLocaleString() : '0'}</Text>
         </View>
 
-        {/* PASTIKAN tombol ini menggunakan onPress={onDelete} */}
         <TouchableOpacity onPress={onDelete} style={styles.deleteBtn}>
-          <Text style={{ color: 'red', fontWeight: 'bold' }}>Hapus</Text>
+          <Text style={styles.deleteText}>Hapus</Text>
         </TouchableOpacity>
-      </View>{' '}
+      </View>
+
       <View style={styles.divider} />
+
       <View style={styles.infoRow}>
         <View>
           <Text style={styles.label}>Tanggal Beli</Text>
@@ -32,17 +24,17 @@ export default function WifiCard({
         </View>
         <View style={{ alignItems: 'flex-end' }}>
           <Text style={[styles.label, { color: '#e74c3c' }]}>Jatuh Tempo</Text>
-          <Text style={[styles.date, { fontWeight: 'bold' }]}>
-            {tglSelesai}
-          </Text>
+          <Text style={[styles.date, { fontWeight: 'bold' }]}>{tglSelesai}</Text>
         </View>
       </View>
+
       <View style={status ? styles.statusActive : styles.statusOff}>
         <Text style={styles.statusText}>{status ? 'AKTIF' : 'NON-AKTIF'}</Text>
       </View>
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#fff',
@@ -56,10 +48,18 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center', // Agar teks nama dan tombol sejajar tengah
     marginBottom: 10,
   },
   name: { fontSize: 16, fontWeight: 'bold' },
   price: { color: '#27ae60', fontWeight: 'bold' },
+  deleteBtn: {
+    backgroundColor: '#fdeaea',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 8,
+  },
+  deleteText: { color: 'red', fontWeight: 'bold', fontSize: 12 },
   divider: { height: 1, backgroundColor: '#eee', marginBottom: 10 },
   infoRow: { flexDirection: 'row', justifyContent: 'space-between' },
   label: { fontSize: 10, color: '#95a5a6', textTransform: 'uppercase' },
@@ -80,4 +80,3 @@ const styles = StyleSheet.create({
   },
   statusText: { fontSize: 10, fontWeight: 'bold' },
 });
-
