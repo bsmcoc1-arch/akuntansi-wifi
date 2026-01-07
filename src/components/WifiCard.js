@@ -80,3 +80,4 @@ const styles = StyleSheet.create({
   },
   statusText: { fontSize: 10, fontWeight: 'bold' },
 });
+
