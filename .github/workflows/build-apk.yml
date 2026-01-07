@@ -1,4 +1,4 @@
-name: Build Android APK
+name: AKUNTANSI_WIFI
 on:
   push:
     branches:
